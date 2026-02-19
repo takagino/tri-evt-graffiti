@@ -1,0 +1,16 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # 毎日 日本時間の朝9時（UTC 0:00）に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 手動実行ボタンも有効化
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        # curlコマンドでSupabaseのURLを叩くだけ
+        # 実際にデータ取得などはしなくてOK。アクセスがあれば「生きてる」とみなされます。
+        run: curl -I https://jpwxwgdtfazuazbjgmpe.supabase.co
